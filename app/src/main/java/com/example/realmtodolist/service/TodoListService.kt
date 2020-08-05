@@ -40,7 +40,10 @@ class TodoListService : TodoListInterface {
      * @param todo Todo is the to-do to be deleted
      */
     override fun deleteTodo(realmInstance: Realm, todoList: TodoList, todo: Todo) {
-        TODO("Not yet implemented")
+        realmInstance.beginTransaction()
+        todoList.todos.remove(todo)
+        realmInstance.copyToRealmOrUpdate(todoList)
+        realmInstance.commitTransaction()
     }
 
     /**

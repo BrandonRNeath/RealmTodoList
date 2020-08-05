@@ -58,11 +58,17 @@ class MainActivity : AppCompatActivity() {
         for (x in realm.where<TodoList>().findAll()) {
             Log.d("Test", x.todos[0]?.todoName.toString())
         }
+
+        Log.d("Test", "---------------------------------------------------------")
+        Log.d("Test", "Delete Todo")
+        todoListService.deleteTodo(realm, todoList, todo1)
+        Log.d("Test", realm.where<TodoList>().findAll().toString())
+        Log.d("Test", "---------------------------------------------------------")
+
         // Testing delete list function
         todoListService.deleteList(realm, todoList)
         todoListService.deleteList(realm, todoList2)
 
-        Log.d("Test", "---------------------------------------------------------")
         Log.d("Test", realm.where<TodoList>().findAll().toString())
     }
 
