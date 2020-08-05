@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.realmtodolist.R
+import com.example.realmtodolist.model.Todo
 import com.example.realmtodolist.model.TodoList
 import com.example.realmtodolist.service.TodoListService
 import io.realm.Realm
@@ -40,9 +41,28 @@ class MainActivity : AppCompatActivity() {
         todoListService.addList(realm, todoList2)
         Log.d("Test", realm.where<TodoList>().findAll().toString())
 
+        Log.d("Test", "---------------------------------------------------------")
+        // Testing addTodo function
+        val todo1 = Todo()
+        todo1.todoID = UUID.randomUUID().toString()
+        todo1.todoName = "9 am meeting"
+        todoListService.addTodo(realm, todoList, todo1)
+
+        val todo2 = Todo()
+        todo2.todoID = UUID.randomUUID().toString()
+        todo2.todoName = "Buy Apples"
+        todoListService.addTodo(realm, todoList2, todo2)
+
+        Log.d("Test", realm.where<TodoList>().findAll().toString())
+
+        for (x in realm.where<TodoList>().findAll()) {
+            Log.d("Test", x.todos[0]?.todoName.toString())
+        }
         // Testing delete list function
         todoListService.deleteList(realm, todoList)
         todoListService.deleteList(realm, todoList2)
+
+        Log.d("Test", "---------------------------------------------------------")
         Log.d("Test", realm.where<TodoList>().findAll().toString())
     }
 
