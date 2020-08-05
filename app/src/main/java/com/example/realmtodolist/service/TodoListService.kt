@@ -4,6 +4,7 @@ import com.example.realmtodolist.api.TodoListInterface
 import com.example.realmtodolist.model.Todo
 import com.example.realmtodolist.model.TodoList
 import io.realm.Realm
+import io.realm.kotlin.where
 
 class TodoListService : TodoListInterface {
     /**
@@ -25,7 +26,10 @@ class TodoListService : TodoListInterface {
      * @param todoList TodoList is the list to be deleted
      */
     override fun deleteList(realmInstance: Realm, todoList: TodoList) {
-        TODO("Not yet implemented")
+        realmInstance.beginTransaction()
+        realmInstance.where<TodoList>().equalTo("listID", todoList.listID).findFirst()
+            ?.deleteFromRealm()
+        realmInstance.commitTransaction()
     }
 
     /**

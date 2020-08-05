@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         realm = getDefaultInstance()
 
+        // Testing add list function
         todoListService = TodoListService()
         val todoList = TodoList()
         todoList.listID = UUID.randomUUID().toString()
@@ -37,7 +38,11 @@ class MainActivity : AppCompatActivity() {
         todoList2.todos = RealmList()
         todoListService.addList(realm, todoList)
         todoListService.addList(realm, todoList2)
+        Log.d("Test", realm.where<TodoList>().findAll().toString())
 
+        // Testing delete list function
+        todoListService.deleteList(realm, todoList)
+        todoListService.deleteList(realm, todoList2)
         Log.d("Test", realm.where<TodoList>().findAll().toString())
     }
 
