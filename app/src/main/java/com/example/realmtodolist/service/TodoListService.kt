@@ -13,7 +13,9 @@ class TodoListService : TodoListInterface {
      * @param todoList TodoList is the list to be added
      */
     override fun addList(realmInstance: Realm, todoList: TodoList) {
-        TODO("Not yet implemented")
+        realmInstance.beginTransaction()
+        realmInstance.copyToRealm(todoList)
+        realmInstance.commitTransaction()
     }
 
     /**
