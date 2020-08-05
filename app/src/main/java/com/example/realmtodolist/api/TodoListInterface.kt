@@ -9,5 +9,5 @@ interface TodoListInterface {
     fun deleteList(realmInstance: Realm, todoList: TodoList)
     fun deleteTodo(realmInstance: Realm, todoList: TodoList, todo: Todo)
     fun addTodo(realmInstance: Realm, todoList: TodoList, todo: Todo)
-    fun deleteAllTodos(realmInstance: Realm, todoList: TodoList, todo: Todo)
+    fun deleteAllTodos(realmInstance: Realm, todoList: TodoList)
 }
