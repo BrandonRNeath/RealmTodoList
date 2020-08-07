@@ -67,6 +67,9 @@ class TodoListService : TodoListInterface {
      * @param todoList TodoList is the to-do list to have to-dos removed from
      */
     override fun deleteAllTodos(realmInstance: Realm, todoList: TodoList) {
-        TODO("Not yet implemented")
+        realmInstance.beginTransaction()
+        todoList.todos.removeAll(todoList.todos)
+        realmInstance.copyToRealmOrUpdate(todoList)
+        realmInstance.commitTransaction()
     }
 }

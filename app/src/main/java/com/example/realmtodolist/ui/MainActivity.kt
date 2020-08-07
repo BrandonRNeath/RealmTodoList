@@ -59,17 +59,42 @@ class MainActivity : AppCompatActivity() {
             Log.d("Test", x.todos[0]?.todoName.toString())
         }
 
+        // Testing deleteTodo function
+//        Log.d("Test", "---------------------------------------------------------")
+// //        Log.d("Test", "Delete Todo")
+// //        todoListService.deleteTodo(realm, todoList, todo1)
+// //        Log.d("Test", realm.where<TodoList>().findAll().toString())
+// //        Log.d("Test", "---------------------------------------------------------")
+
+        // Testing deleteAllTodos
+        Log.d("Test", "Add more Todos")
         Log.d("Test", "---------------------------------------------------------")
-        Log.d("Test", "Delete Todo")
-        todoListService.deleteTodo(realm, todoList, todo1)
+        val todo3 = Todo()
+        todo3.todoID = UUID.randomUUID().toString()
+        todo3.todoName = "Buy Chocolates"
+        todoListService.addTodo(realm, todoList2, todo3)
+        val todo4 = Todo()
+        todo4.todoID = UUID.randomUUID().toString()
+        todo4.todoName = "Buy Coffee"
+        todoListService.addTodo(realm, todoList2, todo4)
+        Log.d("Test", realm.where<TodoList>().findAll().toString())
+        Log.d("Test", "Delete all Todos")
+        todoListService.deleteAllTodos(realm, todoList2)
         Log.d("Test", realm.where<TodoList>().findAll().toString())
         Log.d("Test", "---------------------------------------------------------")
+        Log.d("Test", "Add new todo")
+        val todo5 = Todo()
+        todo5.todoID = UUID.randomUUID().toString()
+        todo5.todoName = "Buy Orange Juice"
+        todoListService.addTodo(realm, todoList2, todo5)
+        Log.d("Test", realm.where<TodoList>().findAll().toString())
 
+        Log.d("Test", "Delete Lists")
         // Testing delete list function
         todoListService.deleteList(realm, todoList)
         todoListService.deleteList(realm, todoList2)
-
         Log.d("Test", realm.where<TodoList>().findAll().toString())
+        Log.d("Test", "---------------------------------------------------------")
     }
 
     override fun onDestroy() {
