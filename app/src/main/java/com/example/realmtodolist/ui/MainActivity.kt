@@ -1,5 +1,6 @@
 package com.example.realmtodolist.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +19,18 @@ import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        lateinit var context: Context
+    }
+
     private lateinit var realm: Realm
     private lateinit var todoListService: TodoListService
-    private lateinit var realmList: RealmList<TodoList>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        context = this
 
         Realm.deleteRealm(Realm.getDefaultConfiguration())
 
@@ -55,6 +61,11 @@ class MainActivity : AppCompatActivity() {
         todo2.todoID = UUID.randomUUID().toString()
         todo2.todoName = "Buy Apples"
         todoListService.addTodo(realm, todoList2, todo2)
+
+        val todo3 = Todo()
+        todo3.todoID = UUID.randomUUID().toString()
+        todo3.todoName = "Buy Coffee"
+        todoListService.addTodo(realm, todoList2, todo3)
 
         Log.d("Test", realm.where<TodoList>().findAll().toString())
 

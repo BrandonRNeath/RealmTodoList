@@ -1,15 +1,18 @@
 package com.example.realmtodolist.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
 import com.example.realmtodolist.model.TodoList
+import com.example.realmtodolist.ui.MainActivity
+import com.example.realmtodolist.ui.TodosActivity
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
-import kotlinx.android.synthetic.main.todo_list.view.*
+import kotlinx.android.synthetic.main.todo_list_view.view.*
 
 /**
  * The adapter for the todo list recycler view
@@ -24,8 +27,11 @@ class TodoListAdapter(
     autoUpdate: Boolean
 ) : RealmRecyclerViewAdapter<TodoList, TodoListAdapter.TodoListViewHolder>(todoList, autoUpdate) {
 
+    // Setting up item click
+    private var onItemClick: ((TodoList) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.todo_list, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.todo_list_view, parent, false)
         return TodoListViewHolder(view)
     }
 
@@ -39,5 +45,17 @@ class TodoListAdapter(
         return todoList.size
     }
 
-    class TodoListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class TodoListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.setOnClickListener {
+                todoList[adapterPosition]?.let { selectedTodoList ->
+                    onItemClick?.invoke(selectedTodoList)
+                    val intent = Intent(MainActivity.context, TodosActivity::class.java).apply {
+                        putExtra("listID", todoList[adapterPosition]?.listID)
+                    }
+                    MainActivity.context.startActivity(intent)
+                }
+            }
+        }
+    }
 }
