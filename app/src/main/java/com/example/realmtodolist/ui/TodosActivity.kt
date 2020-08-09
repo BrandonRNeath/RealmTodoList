@@ -13,22 +13,32 @@ import io.realm.kotlin.where
 
 class TodosActivity : AppCompatActivity() {
 
+    companion object {
+        lateinit var listID: String
+    }
+
     private lateinit var realm: Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todos)
 
+        setupUI()
+    }
+
+    private fun setupUI() {
         // Set todolist title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra("listName")
+
+        listID = intent.getStringExtra("listID")!!
 
         realm = Realm.getDefaultInstance()
 
         // Perform query to find todoList from the listID that was passed through from previous
         // previous activity
         val todoList =
-            realm.where<TodoList>().equalTo("listID", intent.getStringExtra("listID")).findFirst()
+            realm.where<TodoList>().equalTo("listID", listID).findFirst()
 
         val todos = todoList?.todos
 
@@ -40,6 +50,7 @@ class TodosActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Return back to contact screen
         if (item.itemId == android.R.id.home) {

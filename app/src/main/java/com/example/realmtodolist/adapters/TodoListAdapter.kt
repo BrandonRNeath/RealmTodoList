@@ -36,7 +36,7 @@ class TodoListAdapter(
     }
 
     override fun onBindViewHolder(holder: TodoListViewHolder, position: Int) {
-        // Setting name of the todo list
+        // Setting name of the to-do list
         val todoList = todoList[position]
         holder.itemView.todo_list_name.text = todoList!!.listName
     }

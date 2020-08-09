@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
 import com.example.realmtodolist.model.Todo
+import com.example.realmtodolist.ui.MainActivity
+import com.example.realmtodolist.ui.TodosActivity
 import io.realm.RealmList
 import io.realm.RealmRecyclerViewAdapter
 import kotlinx.android.synthetic.main.todo_view.view.*
@@ -32,9 +34,19 @@ class TodosAdapter(
     }
 
     override fun onBindViewHolder(holder: TodosViewHolder, position: Int) {
-        // Setting name of the todo
+        // Setting name of the to-do
         val todo = todos[position]
         holder.itemView.todo_name_tv.text = todo!!.todoName
+
+        holder.itemView.btn_delete_todo.setOnClickListener {
+
+            // TodoList the to-do belongs to is fetched
+            val todoList =
+                MainActivity.todoListService.fetchTodoList(MainActivity.realm, TodosActivity.listID)
+
+            // Deletes to-do from the realm database
+            MainActivity.todoListService.deleteTodo(MainActivity.realm, todoList, todo)
+        }
     }
 
     override fun getItemCount(): Int {

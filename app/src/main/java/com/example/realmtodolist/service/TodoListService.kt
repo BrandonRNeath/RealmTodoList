@@ -72,4 +72,15 @@ class TodoListService : TodoListInterface {
         realmInstance.copyToRealmOrUpdate(todoList)
         realmInstance.commitTransaction()
     }
+
+    /**
+     * Returns todoList through listID given
+     *
+     * @param realmInstance Realm
+     * @param listID String the id of the todoList that is being fetched
+     * @return TodoList
+     */
+    override fun fetchTodoList(realmInstance: Realm, listID: String): TodoList {
+       return realmInstance.where<TodoList>().equalTo("listID", listID).findFirst()!!
+    }
 }

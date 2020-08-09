@@ -21,10 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         lateinit var context: Context
+        lateinit var realm: Realm
+        lateinit var todoListService: TodoListService
     }
-
-    private lateinit var realm: Realm
-    private lateinit var todoListService: TodoListService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
