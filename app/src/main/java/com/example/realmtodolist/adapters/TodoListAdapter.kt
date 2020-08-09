@@ -52,6 +52,7 @@ class TodoListAdapter(
                     onItemClick?.invoke(selectedTodoList)
                     val intent = Intent(MainActivity.context, TodosActivity::class.java).apply {
                         putExtra("listID", todoList[adapterPosition]?.listID)
+                        putExtra("listName", todoList[adapterPosition]?.listName)
                     }
                     MainActivity.context.startActivity(intent)
                 }

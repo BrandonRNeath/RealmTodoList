@@ -34,7 +34,7 @@ class TodosAdapter(
     override fun onBindViewHolder(holder: TodosViewHolder, position: Int) {
         // Setting name of the todo
         val todo = todos[position]
-        holder.itemView.todo_name.text = todo!!.todoName
+        holder.itemView.todo_name_tv.text = todo!!.todoName
     }
 
     override fun getItemCount(): Int {

@@ -1,6 +1,7 @@
 package com.example.realmtodolist.ui
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,10 @@ class TodosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todos)
 
+        // Set todolist title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = intent.getStringExtra("listName")
+
         realm = Realm.getDefaultInstance()
 
         // Perform query to find todoList from the listID that was passed through from previous
@@ -34,5 +39,12 @@ class TodosActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = adapter
         }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Return back to contact screen
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

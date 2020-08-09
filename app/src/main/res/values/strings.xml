@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RealmTodoList</string>
+    <string name="delete">Delete</string>
 </resources>
