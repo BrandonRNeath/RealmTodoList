@@ -81,6 +81,6 @@ class TodoListService : TodoListInterface {
      * @return TodoList
      */
     override fun fetchTodoList(realmInstance: Realm, listID: String): TodoList {
-       return realmInstance.where<TodoList>().equalTo("listID", listID).findFirst()!!
+        return realmInstance.where<TodoList>().equalTo("listID", listID).findFirst()!!
     }
 }
