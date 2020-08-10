@@ -5,6 +5,5 @@ import io.realm.annotations.PrimaryKey
 
 open class Todo(
     @PrimaryKey var todoID: String = "",
-    var todoName: String = "",
-    var isCompleted: Boolean = false
+    var todoName: String = ""
 ) : RealmObject()

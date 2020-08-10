@@ -38,15 +38,25 @@ class TodosAdapter(
         val todo = todos[position]
         holder.itemView.todo_name_tv.text = todo!!.todoName
 
-        holder.itemView.btn_delete_todo.setOnClickListener {
-
-            // TodoList the to-do belongs to is fetched
-            val todoList =
-                MainActivity.todoListService.fetchTodoList(MainActivity.realm, TodosActivity.listID)
-
-            // Deletes to-do from the realm database
-            MainActivity.todoListService.deleteTodo(MainActivity.realm, todoList, todo)
+        // Complete to-do and remove from todoList
+        holder.itemView.todo_checkbox.setOnClickListener {
+                holder.itemView.todo_checkbox.isChecked = true
+                removeTodo(todo)
         }
+
+        // Remove to-do
+        holder.itemView.btn_delete_todo.setOnClickListener {
+            removeTodo(todo)
+        }
+    }
+
+    private fun removeTodo(todo: Todo) {
+        // TodoList the to-do belongs to is fetched
+        val todoList =
+            MainActivity.todoListService.fetchTodoList(MainActivity.realm, TodosActivity.listID)
+
+        // Deletes to-do from the realm database
+        MainActivity.todoListService.deleteTodo(MainActivity.realm, todoList, todo)
     }
 
     override fun getItemCount(): Int {
