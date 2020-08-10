@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
 import com.example.realmtodolist.model.TodoList
-import com.example.realmtodolist.ui.MainActivity
+import com.example.realmtodolist.ui.TodoListActivity
 import com.example.realmtodolist.ui.TodosActivity
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
@@ -50,11 +50,11 @@ class TodoListAdapter(
             itemView.setOnClickListener {
                 todoList[adapterPosition]?.let { selectedTodoList ->
                     onItemClick?.invoke(selectedTodoList)
-                    val intent = Intent(MainActivity.context, TodosActivity::class.java).apply {
+                    val intent = Intent(TodoListActivity.context, TodosActivity::class.java).apply {
                         putExtra("listID", todoList[adapterPosition]?.listID)
                         putExtra("listName", todoList[adapterPosition]?.listName)
                     }
-                    MainActivity.context.startActivity(intent)
+                    TodoListActivity.context.startActivity(intent)
                 }
             }
         }

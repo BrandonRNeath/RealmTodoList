@@ -2,12 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="350dp"
     android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/et_add_todo"
+        android:id="@+id/et_add_todo_list"
         android:layout_width="383dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
@@ -55,13 +55,14 @@
         android:id="@+id/margin_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="500dp"
+        android:layout_marginBottom="348dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/add_todo_btn"
+        android:id="@+id/add_todo_list_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -69,10 +70,10 @@
         android:background="@color/colorAccent"
         android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/et_add_todo"
+        app:layout_constraintEnd_toEndOf="@+id/et_add_todo_list"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/et_add_todo"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_todo"
+        app:layout_constraintStart_toStartOf="@+id/et_add_todo_list"
+        app:layout_constraintTop_toBottomOf="@+id/et_add_todo_list"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
 import com.example.realmtodolist.model.Todo
-import com.example.realmtodolist.ui.MainActivity
+import com.example.realmtodolist.ui.TodoListActivity
 import com.example.realmtodolist.ui.TodosActivity
 import io.realm.RealmList
 import io.realm.RealmRecyclerViewAdapter
@@ -53,10 +53,10 @@ class TodosAdapter(
     private fun removeTodo(todo: Todo) {
         // TodoList the to-do belongs to is fetched
         val todoList =
-            MainActivity.todoListService.fetchTodoList(MainActivity.realm, TodosActivity.listID)
+            TodoListActivity.todoListService.fetchTodoList(TodoListActivity.realm, TodosActivity.listID)
 
         // Deletes to-do from the realm database
-        MainActivity.todoListService.deleteTodo(MainActivity.realm, todoList, todo)
+        TodoListActivity.todoListService.deleteTodo(TodoListActivity.realm, todoList, todo)
     }
 
     override fun getItemCount(): Int {
