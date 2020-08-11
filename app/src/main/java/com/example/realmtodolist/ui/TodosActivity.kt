@@ -39,7 +39,7 @@ class TodosActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        // Set todolist title
+        // Set todoList title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra("listName")
 
@@ -54,7 +54,7 @@ class TodosActivity : AppCompatActivity() {
 
         val todos = todoList.todos
 
-        // To-dos contained within the todolist selected is displayed on the recycler view
+        // To-dos contained within the todoList selected is displayed on the recycler view
         val recyclerView = findViewById<RecyclerView>(R.id.todos_recycler_view)
         val adapter = TodosAdapter(this, todos, true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -104,7 +104,7 @@ class TodosActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Return back to contact screen
+        // Return back to todoList screen
         if (item.itemId == android.R.id.home) {
             onBackPressed()
         }

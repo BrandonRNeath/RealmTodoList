@@ -7,10 +7,12 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
 import com.example.realmtodolist.adapters.TodoListAdapter
+import com.example.realmtodolist.helper.SwipeTodoListToDeleteCallback
 import com.example.realmtodolist.model.TodoList
 import com.example.realmtodolist.service.TodoListService
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -50,12 +52,22 @@ class TodoListActivity : AppCompatActivity() {
         val adapter = TodoListAdapter(this, result, true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        // Add divider between each to-do list
         recyclerView.addItemDecoration(
             DividerItemDecoration(
                 this,
                 DividerItemDecoration.VERTICAL
             )
         )
+        // Slide to delete to-do list function
+        val swipeHandler = object : SwipeTodoListToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.swipeDeleteAtPosition(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     /**
@@ -82,11 +94,13 @@ class TodoListActivity : AppCompatActivity() {
             }
 
             bottomSheetDialog.add_todo_list_btn.setOnClickListener {
-                // Creating new to-do list with name entered from user within Edit Text view
+                // Creating new todoList with name entered from user within Edit Text view
                 val todoList = TodoList()
                 todoList.listID = UUID.randomUUID().toString()
                 todoList.listName = bottomSheetDialog.et_add_todo_list.text.toString()
                 todoList.todos = RealmList()
+
+                // New todoList is added to realm
                 todoListService.addList(realm, todoList)
 
                 bottomSheetDialog.dismiss()

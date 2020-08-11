@@ -46,11 +46,27 @@ class TodoListAdapter(
         return todoList.size
     }
 
+    /**
+     * Deletes to-do list placed at adapter position passed as parameter
+     * @param adapterPosition Int the adapter position passed
+     */
+    fun swipeDeleteAtPosition(adapterPosition: Int) {
+        todoList[adapterPosition]?.let {
+            TodoListActivity.todoListService.deleteList(
+                TodoListActivity.realm,
+                it
+            )
+        }
+    }
+
     inner class TodoListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
                 todoList[adapterPosition]?.let { selectedTodoList ->
                     onItemClick?.invoke(selectedTodoList)
+
+                    // The TodosActivity is launched with the selected todoLists listID and listName
+                    // passed
                     val intent = Intent(TodoListActivity.context, TodosActivity::class.java).apply {
                         putExtra("listID", todoList[adapterPosition]?.listID)
                         putExtra("listName", todoList[adapterPosition]?.listName)
