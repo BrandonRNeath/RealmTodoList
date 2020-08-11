@@ -9,8 +9,9 @@
         android:id="@+id/todo_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -20,8 +21,18 @@
 
         <TextView
             android:id="@+id/todo_list_name"
+            android:layout_width="333dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/todo_list_todo_amount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/todo_amount_default_value"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="italic" />

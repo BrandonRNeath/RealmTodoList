@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.realmtodolist.R
@@ -53,11 +54,17 @@ class TodosActivity : AppCompatActivity() {
 
         val todos = todoList.todos
 
-        // Todos contained within the todolist selected is displayed on the recycler view
+        // To-dos contained within the todolist selected is displayed on the recycler view
         val recyclerView = findViewById<RecyclerView>(R.id.todos_recycler_view)
         val adapter = TodosAdapter(this, todos, true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     /**

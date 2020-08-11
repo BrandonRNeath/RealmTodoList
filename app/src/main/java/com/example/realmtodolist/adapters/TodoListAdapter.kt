@@ -39,6 +39,7 @@ class TodoListAdapter(
         // Setting name of the to-do list
         val todoList = todoList[position]
         holder.itemView.todo_list_name.text = todoList!!.listName
+        holder.itemView.todo_list_todo_amount.text = todoList.todos.size.toString()
     }
 
     override fun getItemCount(): Int {

@@ -11,4 +11,5 @@
     <string name="new_todo_list">New Todo List</string>
     <string name="new_todo">New Todo</string>
     <string name="your_todo_lists">Your Todo Lists</string>
+    <string name="todo_amount_default_value">0</string>
 </resources>

@@ -54,7 +54,8 @@ class TodoListActivity : AppCompatActivity() {
             DividerItemDecoration(
                 this,
                 DividerItemDecoration.VERTICAL
-            ))
+            )
+        )
     }
 
     /**
