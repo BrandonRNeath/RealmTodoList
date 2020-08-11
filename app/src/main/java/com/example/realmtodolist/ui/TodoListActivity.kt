@@ -18,7 +18,7 @@ import io.realm.Realm.getDefaultInstance
 import io.realm.RealmList
 import io.realm.kotlin.where
 import java.util.UUID
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_todo_list.*
 import kotlinx.android.synthetic.main.bottom_sheet_todo_list.*
 
 class TodoListActivity : AppCompatActivity() {
@@ -31,7 +31,7 @@ class TodoListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_todo_list)
 
         context = this
 
@@ -50,6 +50,9 @@ class TodoListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
+    /**
+     *  Sets up functionality of floating action button for adding new to-do list
+     */
     private fun setupAddNewTodoList() {
         add_todo_list_fab.setOnClickListener {
 

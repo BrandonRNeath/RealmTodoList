@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RealmTodoList</string>
     <string name="delete">Delete</string>
+    <string name="create_new_todo_list">Title Of Todo List</string>
     <string name="create_new_todo">Title Of Todo</string>
     <string name="select_todo_priority">Select Todo Priority</string>
     <string name="low">Low</string>
