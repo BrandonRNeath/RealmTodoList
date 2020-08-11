@@ -10,4 +10,5 @@
     <string name="add">Add</string>
     <string name="new_todo_list">New Todo List</string>
     <string name="new_todo">New Todo</string>
+    <string name="your_todo_lists">Your Todo Lists</string>
 </resources>
